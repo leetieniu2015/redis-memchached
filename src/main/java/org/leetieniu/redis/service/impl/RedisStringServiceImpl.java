@@ -2,14 +2,14 @@ package org.leetieniu.redis.service.impl;
 
 import java.util.Date;
 
-import org.leetieniu.redis.service.RedisService;
+import org.leetieniu.service.CacheService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service(value = "redisStringService")
-public class RedisStringServiceImpl implements RedisService<String> {
+public class RedisStringServiceImpl implements CacheService<String> {
 	
 	@Override
 	@Cacheable(value = "redisCache" , key = "#key")
@@ -27,7 +27,7 @@ public class RedisStringServiceImpl implements RedisService<String> {
 	}
 
 	@Override
-	@CacheEvict(value="accountCache",key="#key")
+	@CacheEvict(value="redisCache", key="#key")
 	public void deleteKey(String key) {
 		System.out.println(String.format("delete time : %s", new Date().toString()));
 	}

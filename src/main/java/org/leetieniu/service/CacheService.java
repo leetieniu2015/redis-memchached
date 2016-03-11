@@ -1,4 +1,4 @@
-package org.leetieniu.redis.service;
+package org.leetieniu.service;
 
 /**
  * @className RedisService
@@ -8,7 +8,7 @@ package org.leetieniu.redis.service;
  * @version v1.0
  * @param <T>
  */
-public interface RedisService <T> {
+public interface CacheService <T> {
 	
 	/**
 	 * @title getKey
