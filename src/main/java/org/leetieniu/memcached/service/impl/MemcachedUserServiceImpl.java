@@ -2,18 +2,19 @@ package org.leetieniu.memcached.service.impl;
 
 import java.util.Date;
 
+import org.leetieniu.memcached.service.MemcachedService;
 import org.leetieniu.model.User;
 import org.leetieniu.service.CacheService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;	
 
 @Service("memcachedUserService")
-public class MemcachedUserServiceImpl implements CacheService<User> {
+public class MemcachedUserServiceImpl implements CacheService<User>, MemcachedService {
 	
 	@Override
-	@Cacheable(value = "memCache" , key = "#id")
+	@Cacheable(value = CACHE_MEMCAHE , key = "#id")
 	public User getKey(String id) {
     	final String time = String.format("get time : %s", new Date().toString());
 		System.out.println(time);
@@ -21,7 +22,7 @@ public class MemcachedUserServiceImpl implements CacheService<User> {
 	}
     
 	@Override
-	@CachePut(value = "memCache", key = "#id")
+	@CachePut(value = CACHE_MEMCAHE, key = "#id")
 	public User putKey(String id, User user) {
     	final String time = String.format("put time : %s", new Date().toString());
 		System.out.println(time);
@@ -29,7 +30,7 @@ public class MemcachedUserServiceImpl implements CacheService<User> {
 	}
     
 	@Override
-	@CacheEvict(value="memCache", key="#id")
+	@CacheEvict(value = CACHE_MEMCAHE, key="#id")
 	public void deleteKey(String id) {
     	final String time = String.format("delete time : %s", new Date().toString());
 		System.out.println(time);

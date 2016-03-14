@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.leetieniu.model.User;
 import org.leetieniu.service.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,25 +13,27 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "spring.xml")
-public class RedisServiceTest {
+public class RedisUserServiceTest {
 	
 	@Autowired
-	@Qualifier(value = "redisStringService")
-	private CacheService<String> redisStringService;
+	@Qualifier(value = "redisUserService")
+	private CacheService<User> redisUserService;
 	
 	@Test
 	public void testGetKey() {
-		System.out.println(redisStringService.getKey("leejun"));
-		System.out.println(redisStringService.getKey("leejun"));
+		System.out.println(redisUserService.getKey("leejun"));
+		System.out.println(redisUserService.getKey("leejun"));
 	}
 	
 	@Test
 	public void testPutKey() {
-		System.out.println(redisStringService.putKey("leejun", String.format("put time : %s", new Date().toString())));
+		final User user = new User("1", "leetieniu", "shouaiaa02", String.format("put time : %s", new Date().toString()));
+		
+		System.out.println(redisUserService.putKey("1", user));
 	}
 	
 	@Test
 	public void testDeleteKey() {
-		redisStringService.deleteKey("leejun");
+		redisUserService.deleteKey("leejun");
 	}
 }
