@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class MemcachedStringServiceImpl implements CacheService<String>, MemcachedService {
 	
 	@Override
-	@Cacheable(value = CACHE_MEMCAHE , key = "#key")
+	@Cacheable(value = CACHE_MEMCAHE , key = "'str_' + #key")
 	public String getKey(String key) {
 		final String time = new Date().toString();
 		
@@ -22,13 +22,13 @@ public class MemcachedStringServiceImpl implements CacheService<String>, Memcach
 	}
 
 	@Override
-	@CachePut(value = CACHE_MEMCAHE, key = "#key")
+	@CachePut(value = CACHE_MEMCAHE, key = "'str_' + #key")
 	public String putKey(String key, String value) {
 		return value;
 	}
 
 	@Override
-	@CacheEvict(value = CACHE_MEMCAHE, key="#key")
+	@CacheEvict(value = CACHE_MEMCAHE, key="'str_' + #key")
 	public void deleteKey(String key) {
 		System.out.println(String.format("delete time : %s", new Date().toString()));
 	}

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class RedisStringServiceImpl implements CacheService<String>, RedisService {
 	
 	@Override
-	@Cacheable(value = CACHE_REDISSTRINGCAHE , key = "#key")
+	@Cacheable(value = CACHE_REDISCAHE , key = "'str_' + #key")
 	public String getKey(String key) {
 		final String time = new Date().toString();
 		
@@ -22,13 +22,13 @@ public class RedisStringServiceImpl implements CacheService<String>, RedisServic
 	}
 
 	@Override
-	@CachePut(value = CACHE_REDISSTRINGCAHE, key = "#key")
+	@CachePut(value = CACHE_REDISCAHE, key = "'str_' + #key")
 	public String putKey(String key, String value) {
 		return value;
 	}
 
 	@Override
-	@CacheEvict(value = CACHE_REDISSTRINGCAHE, key="#key")
+	@CacheEvict(value = CACHE_REDISCAHE, key="'str_' + #key")
 	public void deleteKey(String key) {
 		System.out.println(String.format("delete time : %s", new Date().toString()));
 	}

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class MemcachedUserServiceImpl implements CacheService<User>, MemcachedService {
 	
 	@Override
-	@Cacheable(value = CACHE_MEMCAHE , key = "#id")
+	@Cacheable(value = CACHE_MEMCAHE , key = "'user_' + #id")
 	public User getKey(String id) {
     	final String time = String.format("get time : %s", new Date().toString());
 		System.out.println(time);
@@ -22,7 +22,7 @@ public class MemcachedUserServiceImpl implements CacheService<User>, MemcachedSe
 	}
     
 	@Override
-	@CachePut(value = CACHE_MEMCAHE, key = "#id")
+	@CachePut(value = CACHE_MEMCAHE, key = "'user_' + #id")
 	public User putKey(String id, User user) {
     	final String time = String.format("put time : %s", new Date().toString());
 		System.out.println(time);
@@ -30,7 +30,7 @@ public class MemcachedUserServiceImpl implements CacheService<User>, MemcachedSe
 	}
     
 	@Override
-	@CacheEvict(value = CACHE_MEMCAHE, key="#id")
+	@CacheEvict(value = CACHE_MEMCAHE, key="'user_' + #id")
 	public void deleteKey(String id) {
     	final String time = String.format("delete time : %s", new Date().toString());
 		System.out.println(time);

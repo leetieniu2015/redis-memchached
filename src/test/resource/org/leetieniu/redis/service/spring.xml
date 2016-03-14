@@ -38,17 +38,16 @@
     </beans:bean> 
      -->
 	
-	<!-- <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+	<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
 		<constructor-arg ref="redisTemplate" />
 		<constructor-arg>
 			<list>
-				<value>redisStringCache</value>
-				<value>redisUserCache</value>
+				<value>redisCache</value>
 			</list>
 		</constructor-arg>
-    </bean> -->
+    </bean> 
     
-    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">  
+   <!--  <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">  
         <property name="caches">  
             <set>  
                 <bean name="redisStringCache" class="org.springframework.data.redis.cache.RedisCache">  
@@ -65,6 +64,6 @@
                 </bean>
             </set>  
         </property>  
-    </bean>  
+    </bean>  --> 
 	
 </beans>
